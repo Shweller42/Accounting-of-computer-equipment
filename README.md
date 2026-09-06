@@ -2,7 +2,7 @@
 
 Десктопное приложение для автоматизации учета, контроля состояния и ведения журнала обслуживания компьютерного оборудования организации. Разработано в рамках курсового проекта.
 
-<img width="875" height="389" alt="изображение" src="https://github.com/user-attachments/assets/6e65a44e-dc13-4d19-ae12-def9ddbbd86c" />
+<img width="900" height="541" alt="{1F699417-59D0-4654-BF3F-B39944AF5CE7}" src="https://github.com/user-attachments/assets/fdf1a6d2-52cc-4f40-a735-fc86c53e9c7f" />
 
 ## 🛠 Технологический стек
 * **Язык программирования:** C#
@@ -24,6 +24,8 @@
 * Использование транзакций SQLite защищает базу данных от повреждения при аварийном завершении программы.
 
 ## 📸 Интерфейс приложения
-<img width="604" height="441" alt="изображение" src="https://github.com/user-attachments/assets/1bedbd2a-2435-431d-b4a9-016456b92e18" />
-<img width="807" height="417" alt="изображение" src="https://github.com/user-attachments/assets/55650ca3-4ed8-4929-a96f-a314a35fd85c" />
-<img width="457" height="452" alt="изображение" src="https://github.com/user-attachments/assets/752f2855-3bd3-48df-936d-427084ad230d" />
+
+<img width="382" height="379" alt="{7D8D40E1-7921-48A7-971E-96D4103F4948}" src="https://github.com/user-attachments/assets/8d447af5-26a4-4dcc-8c4c-f5afe59b100b" />
+<img width="505" height="366" alt="{A6969B6B-54D5-48F2-A0EA-0068E6F27A57}" src="https://github.com/user-attachments/assets/050a9e5a-01ad-4272-8116-6e4c0ee3761c" />
+<img width="864" height="441" alt="{BE5CB168-ACD0-4ED9-A006-201AADFBAEEC}" src="https://github.com/user-attachments/assets/a6bde78f-c2cc-4358-8b08-4e73ead6e449" />
+
