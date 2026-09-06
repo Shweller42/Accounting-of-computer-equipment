@@ -1,0 +1,30 @@
+@startuml
+left to right direction
+
+actor "Пользователь" as User
+
+rectangle "Система учёта\nкомпьютерной техники" {
+  usecase "Просмотр списка\nоборудования" as UC1
+  usecase "Поиск и фильтрация\nоборудования" as UC2
+  usecase "Просмотр детальной\nинформации" as UC3
+  usecase "Добавление\nоборудования" as UC4
+  usecase "Редактирование\nоборудования" as UC5
+  usecase "Удаление\nоборудования" as UC6
+  usecase "Добавление записи\nв журнал работ" as UC7
+  usecase "Редактирование записи\nв журнале работ" as UC8
+  usecase "Просмотр статистики\nи отчётов" as UC9
+  usecase "Экспорт данных\nв CSV" as UC10
+}
+
+User --> UC1
+User --> UC2
+User --> UC3
+User --> UC4
+User --> UC5
+User --> UC6
+User --> UC7
+User --> UC8
+User --> UC9
+User --> UC10
+
+@enduml

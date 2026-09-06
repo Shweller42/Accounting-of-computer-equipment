@@ -1,0 +1,144 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class HardwareItem {
+  +Id: int
+  +InventoryNumber: string
+  +Type: string
+  +Manufacturer: string
+  +Model: string
+  +SerialNumber: string
+  +CommissionDate: DateTime
+  +Cost: decimal
+  +Location: string
+  +ResponsibleUser: string
+  +Condition: string
+}
+
+class WorkLogEntry {
+  +Id: int
+  +HardwareId: int
+  +EventDate: DateTime
+  +EventType: string
+  +Description: string
+  +Status: string
+  +Notes: string
+  +Cost: decimal
+  +AdditionalCost: decimal
+  +TotalCost: decimal
+}
+
+class HardwareController {
+  +LoadAll(): List<HardwareItem>
+  +GetLocations(): List<string>
+  +Search(query, type, condition, location?): List<HardwareItem>
+  +GetById(id): HardwareItem?
+  +Add(item): (bool, string)
+  +Update(item): (bool, string)
+  +Delete(id): (bool, string)
+  +GetWorkLog(hardwareId): List<WorkLogEntry>
+  +AddWorkLogEntry(entry): (bool, string)
+  +UpdateWorkLogEntry(entry): (bool, string)
+  +GetStats(): Stats
+  +GetRepairCostByYear(year): decimal
+  +GetOldEquipment(years): List<HardwareItem>
+  +UpdateCondition(hardwareId, condition): void
+  -Validate(item): string?
+}
+
+class HardwareDatabase {
+  -_connectionString: string
+  -dbPath: string
+  +Initialize(): void
+  +GetAll(): List<HardwareItem>
+  +GetById(id): HardwareItem?
+  +Add(item): long
+  +Update(item): void
+  +Delete(id): void
+  +Search(query, type, condition, location?): List<HardwareItem>
+  +GetLocations(): List<string>
+  +GetWorkLog(hardwareId): List<WorkLogEntry>
+  +AddWorkLogEntry(entry): long
+  +UpdateWorkLogEntry(entry): void
+  +GetStats(): Stats
+  +GetRepairCostByYear(year): decimal
+  +GetOldEquipment(years): List<HardwareItem>
+  +UpdateCondition(hardwareId, condition): void
+  +Dispose(): void
+  -ReadHardware(reader): HardwareItem
+  -ApplyMigrations(): void
+}
+
+class MainWindow {
+  +MainWindow()
+  -LoadData(): void
+  -ShowDetail(item): void
+  -HideDetail(): void
+  -AddHardware(): void
+  -EditHardware(): void
+  -DeleteHardware(): void
+  -SearchWithDebounce(): void
+  -AddWorkLogEntry(): void
+  -EditWorkLogEntry(entry): void
+  -SaveWorkLog(): void
+}
+
+class AddEditWindow {
+  -_hardware: HardwareItem?
+  +AddEditWindow(item?)
+  -Save(): void
+}
+
+class DetailsWindow {
+  -_hardware: HardwareItem
+  +DetailsWindow(item)
+  -LoadWorkLog(): void
+}
+
+class WorkLogEntryWindow {
+  -_entry: WorkLogEntry
+  -_hardwareId: int
+  +WorkLogEntryWindow(hardwareId, entry?)
+  -Save(): void
+}
+
+class ReportsWindow {
+  +ReportsWindow()
+  -LoadStats(): void
+  -ShowRepairCost(): void
+  -ExportToCsv(): void
+}
+
+class MessageDialog {
+  +ShowInfo(title, message): void
+  +ShowWarning(title, message): void
+  +ShowError(title, message): void
+  +ShowSuccess(title, message): void
+  +ShowQuestion(title, message): bool
+  +ShowConfirmAction(title, message, action): void
+}
+
+HardwareController --> HardwareItem
+HardwareController --> WorkLogEntry
+HardwareController --> HardwareDatabase
+
+MainWindow --> HardwareController
+MainWindow --> HardwareItem
+MainWindow --> WorkLogEntry
+
+AddEditWindow --> HardwareController
+AddEditWindow --> HardwareItem
+
+DetailsWindow --> HardwareController
+DetailsWindow --> HardwareItem
+DetailsWindow --> WorkLogEntry
+
+WorkLogEntryWindow --> HardwareController
+WorkLogEntryWindow --> WorkLogEntry
+
+ReportsWindow --> HardwareController
+ReportsWindow --> HardwareItem
+
+HardwareItem --> WorkLogEntry : содержит >
+
+@enduml

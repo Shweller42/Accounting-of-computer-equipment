@@ -1,0 +1,70 @@
+<Window x:Class="WpfApp1.Windows.WorkLogEntryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
+        Width="420" Height="350"
+        Title="Добавление события"
+        SnapsToDevicePixels="True">
+
+    <Border BorderBrush="#000000" BorderThickness="1.5" CornerRadius="16"
+            RenderOptions.EdgeMode="Aliased" Background="{DynamicResource SurfaceBrush}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="44"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="{DynamicResource PrimaryDarkerBrush}" MouseDown="Title_MouseDown"
+                CornerRadius="14,14,0,0" SnapsToDevicePixels="True">
+            <TextBlock Text="Добавление события" FontSize="15" FontWeight="SemiBold"
+                       Foreground="White" VerticalAlignment="Center" Margin="16,0"/>
+        </Border>
+
+        <StackPanel Grid.Row="1" Margin="20,12,20,0">
+            <TextBlock Text="Дата события" FontSize="11" Foreground="{DynamicResource TextSecondaryBrush}" Margin="0,0,0,3"/>
+            <DatePicker x:Name="DpDate" FontSize="13" Margin="0,0,0,10"
+                        Background="{DynamicResource SurfaceBrush}" Foreground="{DynamicResource TextBrush}"/>
+
+            <TextBlock Text="Тип события *" FontSize="11" Foreground="{DynamicResource TextSecondaryBrush}" Margin="0,0,0,3"/>
+            <ComboBox x:Name="CbType" FontSize="13" Padding="8,6" Margin="0,0,0,10"
+                      Background="{DynamicResource SurfaceBrush}" Foreground="{DynamicResource TextBrush}"/>
+
+            <TextBlock Text="Описание *" FontSize="11" Foreground="{DynamicResource TextSecondaryBrush}" Margin="0,0,0,3"/>
+            <TextBox x:Name="TbDescription" FontSize="13" Padding="8,6" Margin="0,0,0,10" Height="60"
+                     TextWrapping="Wrap" AcceptsReturn="True"
+                     Background="{DynamicResource SurfaceBrush}" Foreground="{DynamicResource TextBrush}"/>
+
+            <TextBlock Text="Стоимость работ/запчастей" FontSize="11" Foreground="{DynamicResource TextSecondaryBrush}" Margin="0,0,0,3"/>
+            <TextBox x:Name="TbCost" FontSize="13" Padding="8,6"
+                     Background="{DynamicResource SurfaceBrush}" Foreground="{DynamicResource TextBrush}"/>
+        </StackPanel>
+
+        <Border Grid.Row="2" Background="{DynamicResource SurfaceBrush}" Padding="14,8"
+                BorderBrush="{DynamicResource BorderBrush}" BorderThickness="0,1,0,0"
+                CornerRadius="0,0,14,14" SnapsToDevicePixels="True">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Отмена" Width="100" Height="32" FontSize="12" Cursor="Hand"
+                        Background="{DynamicResource BgBrush}" Foreground="{DynamicResource TextBrush}"
+                        Margin="0,0,8,0" Click="Cancel_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="6" Background="{TemplateBinding Background}"
+                                    BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1"
+                                    Padding="14,4">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Content="ОК" Width="100" Height="32"
+                        Style="{StaticResource PrimaryButton}" FontSize="12" Click="Ok_Click"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Border>
+</Window>

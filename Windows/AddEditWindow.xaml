@@ -1,0 +1,188 @@
+<Window x:Class="WpfApp1.Windows.AddEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
+        Width="520" Height="520"
+        Title="Добавление/Редактирование"
+        SnapsToDevicePixels="True">
+
+    <Border Background="{DynamicResource SurfaceBrush}" BorderBrush="#000000" BorderThickness="1.5" CornerRadius="20"
+            RenderOptions.EdgeMode="Aliased">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="64"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="{DynamicResource PrimaryDarkerBrush}" MouseDown="Title_MouseDown"
+                CornerRadius="18,18,0,0">
+            <Grid>
+                <TextBlock x:Name="TitleText" Text="Добавление техники" FontSize="16" FontWeight="SemiBold"
+                           Foreground="White" VerticalAlignment="Center" Margin="20,0"/>
+                <Button Content="✕" Width="28" Height="28"
+                        Background="Transparent" Foreground="White" FontSize="14"
+                        Cursor="Hand" BorderThickness="0"
+                        HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,12,0"
+                        Click="Cancel_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="14" Background="{TemplateBinding Background}"
+                                    BorderBrush="#FFFFFF66" BorderThickness="1.5" Width="28" Height="28">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FFFFFF33"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+        </Border>
+
+        <ScrollViewer x:Name="AddEditScrollViewer" Grid.Row="1" Style="{StaticResource CustomScrollViewer}"
+                      VerticalScrollBarVisibility="Auto"
+                      BorderThickness="0" Background="{DynamicResource BgBrush}">
+            <StackPanel Margin="16,16,4,40">
+                <TextBlock Text="Инвентарный номер *" FontSize="12" Foreground="{DynamicResource TextSecondaryBrush}" Margin="0,0,0,3"/>
+                <Border Background="{DynamicResource SurfaceBrush}" CornerRadius="8" Padding="2"
+                        BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" Margin="0,0,0,10">
+                    <TextBox x:Name="TbInventory" FontSize="13" Padding="10,6" Background="Transparent"
+                             BorderThickness="0" Foreground="{DynamicResource TextBrush}"/>
+                </Border>
+
+                <TextBlock Text="Тип устройства *" FontSize="12" Foreground="{DynamicResource TextSecondaryBrush}" Margin="0,0,0,3"/>
+                <ComboBox x:Name="CbType" FontSize="13" Padding="8,4"
+                          Foreground="{DynamicResource TextBrush}"
+                          IsEditable="True" Margin="0,0,0,10"
+                          SelectionChanged="Type_Changed"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="12"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="Производитель" FontSize="12" Foreground="{DynamicResource TextSecondaryBrush}" Margin="0,0,0,3"/>
+                        <ComboBox x:Name="CbManufacturer" FontSize="13" Padding="8,4"
+                                  Foreground="{DynamicResource TextBrush}"
+                                  IsEditable="True" Margin="0,0,0,10"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2">
+                        <TextBlock Text="Модель" FontSize="12" Foreground="{DynamicResource TextSecondaryBrush}" Margin="0,0,0,3"/>
+                        <Border Background="{DynamicResource SurfaceBrush}" CornerRadius="8" Padding="2"
+                                BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" Margin="0,0,0,10">
+                            <TextBox x:Name="TbModel" FontSize="13" Padding="10,6" Background="Transparent"
+                                     BorderThickness="0" Foreground="{DynamicResource TextBrush}"/>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+
+                <TextBlock Text="Серийный номер" FontSize="12" Foreground="{DynamicResource TextSecondaryBrush}" Margin="0,0,0,3"/>
+                <Border Background="{DynamicResource SurfaceBrush}" CornerRadius="8" Padding="2"
+                        BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" Margin="0,0,0,10">
+                    <TextBox x:Name="TbSerial" FontSize="13" Padding="10,6" Background="Transparent"
+                             BorderThickness="0" Foreground="{DynamicResource TextBrush}"/>
+                </Border>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="8"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="8"/>
+                        <ColumnDefinition Width="1.6*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="Дата ввода" FontSize="12" Foreground="{DynamicResource TextSecondaryBrush}" Margin="0,0,0,3"/>
+                        <Border Background="{DynamicResource SurfaceBrush}" CornerRadius="8" Padding="2"
+                                BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" Margin="0,0,0,10">
+                            <DatePicker x:Name="DpDate" FontSize="13" Background="Transparent"
+                                        BorderThickness="0" Foreground="{DynamicResource TextBrush}"/>
+                        </Border>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2">
+                        <TextBlock Text="Стоимость" FontSize="12" Foreground="{DynamicResource TextSecondaryBrush}" Margin="0,0,0,3"/>
+                        <Border Background="{DynamicResource SurfaceBrush}" CornerRadius="8" Padding="2"
+                                BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" Margin="0,0,0,10">
+                            <Grid>
+                                <TextBox x:Name="TbCost" FontSize="13" Padding="10,6,28,6" Background="Transparent"
+                                         BorderThickness="0" Foreground="{DynamicResource TextBrush}"
+                                         PreviewTextInput="TbCost_PreviewTextInput"/>
+                                <TextBlock Text="Br" FontSize="11" Foreground="{DynamicResource TextSecondaryBrush}"
+                                           HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+                    <StackPanel Grid.Column="4">
+                        <TextBlock Text="Состояние" FontSize="12" Foreground="{DynamicResource TextSecondaryBrush}" Margin="0,0,0,3"/>
+                        <ComboBox x:Name="CbCondition" FontSize="13" Padding="8,4"
+                                  Foreground="{DynamicResource TextBrush}"
+                                  IsEditable="True" Margin="0,0,0,10"
+                                  PreviewMouseWheel="ComboBox_PreviewMouseWheel"/>
+                    </StackPanel>
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="8"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="Местоположение" FontSize="12" Foreground="{DynamicResource TextSecondaryBrush}" Margin="0,0,0,3"/>
+                        <Border Background="{DynamicResource SurfaceBrush}" CornerRadius="8" Padding="2"
+                                BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" Margin="0,0,0,10">
+                            <TextBox x:Name="TbLocation" FontSize="13" Padding="10,6" Background="Transparent"
+                                     BorderThickness="0" Foreground="{DynamicResource TextBrush}"/>
+                        </Border>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2">
+                        <TextBlock Text="Ответственный" FontSize="12" Foreground="{DynamicResource TextSecondaryBrush}" Margin="0,0,0,3"/>
+                        <Border Background="{DynamicResource SurfaceBrush}" CornerRadius="8" Padding="2"
+                                BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" Margin="0,0,0,10">
+                            <TextBox x:Name="TbResponsible" FontSize="13" Padding="10,6" Background="Transparent"
+                                     BorderThickness="0" Foreground="{DynamicResource TextBrush}"/>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+
+        <Border Grid.Row="2" Background="{DynamicResource SurfaceBrush}" Padding="20,12"
+                BorderBrush="{DynamicResource BorderBrush}" BorderThickness="0,1,0,0"
+                CornerRadius="0,0,18,18">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Отмена" Width="110" Height="38" FontSize="13" Cursor="Hand"
+                        Background="{DynamicResource BgBrush}" Foreground="{DynamicResource TextBrush}"
+                        BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1"
+                        Margin="0,0,10,0" Click="Cancel_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="8" Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1"
+                                    Padding="16,6">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Border.Style>
+                                    <Style TargetType="Border">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="{DynamicResource PrimaryLightBrush}"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Content="Сохранить" Width="130" Height="38"
+                        Style="{StaticResource PrimaryButton}" Click="Save_Click"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Border>
+</Window>
